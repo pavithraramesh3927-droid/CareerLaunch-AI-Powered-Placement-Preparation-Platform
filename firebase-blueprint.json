@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user basic information and overall progress.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "readinessScore": { "type": "number" },
+        "plan": { "type": "string", "enum": ["free", "pro"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Resume": {
+      "title": "Resume",
+      "description": "User resume data and AI analysis results.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "content": { "type": "object" },
+        "atsScore": { "type": "number" },
+        "analysis": { "type": "object" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "QuizResult": {
+      "title": "Quiz Result",
+      "description": "Records of aptitude test performance.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "topic": { "type": "string" },
+        "score": { "type": "number" },
+        "total": { "type": "number" },
+        "difficulty": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "InterviewSession": {
+      "title": "Interview Session",
+      "description": "Logs of mock interviews and AI evaluations.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "transcript": { "type": "array", "items": { "type": "object" } },
+        "score": { "type": "number" },
+        "feedback": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Primary user document"
+    },
+    "/users/{userId}/resumes/{resumeId}": {
+      "schema": "Resume",
+      "description": "User's saved resumes"
+    },
+    "/users/{userId}/quizzes/{quizId}": {
+      "schema": "QuizResult",
+      "description": "Historical quiz performance"
+    },
+    "/users/{userId}/interviews/{interviewId}": {
+      "schema": "InterviewSession",
+      "description": "Past interview transcripts and feedback"
+    }
+  }
+}

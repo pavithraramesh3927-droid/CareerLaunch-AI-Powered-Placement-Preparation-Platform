@@ -1,0 +1,8 @@
+{
+  "name": "CareerLaunch",
+  "description": "Smart AI-Powered Placement Preparation Web Application that helps engineering students become interview-ready through resume building, aptitude training, mock interviews, and personalized AI guidance.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": []
+}
